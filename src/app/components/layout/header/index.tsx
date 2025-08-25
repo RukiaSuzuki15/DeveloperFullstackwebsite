@@ -20,9 +20,10 @@ const Header = () => {
 
         {/* Liens desktop */}
         <div className="hidden md:flex items-center gap-6">
-          <a href="#" className="hover:text-primary transition-colors">Accueil</a>
-          <a href="#" className="hover:text-primary transition-colors">Services</a>
-          <a href="#" className="hover:text-primary transition-colors">Contact</a>
+        <a href="#about-me" className="hover:text-primary transition-colors">About me</a>
+          <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
+          <a href="#education-skills" className="hover:text-primary transition-colors">Education skill</a>
+          <a href="#latest-work" className="hover:text-primary transition-colors">Latest Works</a>
 
           <button
             onClick={handleDownloadPDF}
@@ -52,9 +53,10 @@ const Header = () => {
         }`}
       >
         <div className="flex flex-col items-start gap-3 px-6">
-          <a href="#" className="hover:text-primary transition-colors">Accueil</a>
-          <a href="#" className="hover:text-primary transition-colors">Services</a>
-          <a href="#" className="hover:text-primary transition-colors">Contact</a>
+        <a href="#about-me" className="hover:text-primary transition-colors">About me</a>
+          <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
+          <a href="#education-skills" className="hover:text-primary transition-colors">Education skill</a>
+          <a href="#latest-work" className="hover:text-primary transition-colors">Latest Works</a>
 
           <button
             onClick={handleDownloadPDF}

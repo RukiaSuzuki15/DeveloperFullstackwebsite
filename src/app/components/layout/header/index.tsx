@@ -4,32 +4,71 @@ import { useState } from "react";
 import Logo from "../logo";
 
 const Header = () => {
-    const handleDownloadPDF = () => {
-        window.print();
-    };
-    return (
-        <header className="navbar top-0 left-0 z-999 w-full absolute">
-            <div className="container">
-                <nav className="py-7">
-                    <div className="flex items-center gap-4 sm:gap-8">
-                        <div>
-                            <Logo />
-                        </div>
+  const [isOpen, setIsOpen] = useState(false);
 
-                    
-                        <button
-                            onClick={handleDownloadPDF}
-                            className="relative overflow-hidden cursor-pointer w-fit py-2 sm:py-3 md:py-5 px-4 sm:px-5 md:px-7 border border-primary rounded-full group"
-                        >
-                            <span className="relative z-10 text-xl font-medium text-black group-hover:text-white transition-colors duration-300">
-                                Download PDF Resume
-                            </span>
-                        </button>
-                    </div>
-                </nav>
-            </div>
-        </header>
-    );
+  const handleDownloadPDF = () => {
+    window.print();
+  };
+
+  return (
+    <header className="navbar top-0 left-0 z-50 w-full bg-white shadow-md">
+      <div className="container flex items-center justify-between py-4">
+        {/* Logo */}
+        <div>
+          <Logo />
+        </div>
+
+        {/* Liens desktop */}
+        <div className="hidden md:flex items-center gap-6">
+          <a href="#" className="hover:text-primary transition-colors">Accueil</a>
+          <a href="#" className="hover:text-primary transition-colors">Services</a>
+          <a href="#" className="hover:text-primary transition-colors">Contact</a>
+
+          <button
+            onClick={handleDownloadPDF}
+            className="relative overflow-hidden cursor-pointer w-fit py-2 px-4 border border-primary rounded-full group ml-4"
+          >
+            <span className="relative z-10 text-lg font-medium text-black group-hover:text-white transition-colors duration-300">
+              Download PDF Resume
+            </span>
+          </button>
+        </div>
+
+        {/* Hamburger mobile */}
+        <div className="md:hidden">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-3xl relative z-10 focus:outline-none"
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+
+      {/* Menu mobile */}
+      <div
+        className={`md:hidden bg-white overflow-hidden transition-max-height duration-300 ${
+          isOpen ? "max-h-96 py-4" : "max-h-0"
+        }`}
+      >
+        <div className="flex flex-col items-start gap-3 px-6">
+          <a href="#" className="hover:text-primary transition-colors">Accueil</a>
+          <a href="#" className="hover:text-primary transition-colors">Services</a>
+          <a href="#" className="hover:text-primary transition-colors">Contact</a>
+
+          <button
+            onClick={handleDownloadPDF}
+            className="relative overflow-hidden cursor-pointer w-fit py-2 px-4 border border-primary rounded-full group mt-2"
+          >
+            <span className="relative z-10 text-lg font-medium text-black group-hover:text-white transition-colors duration-300">
+              Download PDF Resume
+            </span>
+          </button>
+        </div>
+      </div>
+    </header>
+  );
 };
 
 export default Header;
+                          

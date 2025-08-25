@@ -48,11 +48,17 @@ const Contact = () => {
         console.error('Error fetching contact data:', error);
       }
     };
+
     fetchData();
   }, []);
 
   const resetForm = () => {
-    setFormData({ name: "", number: "", email: "", message: "" });
+    setFormData({
+      name: "",
+      number: "",
+      email: "",
+      message: ""
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -85,11 +91,13 @@ const Contact = () => {
       if (data.success) {
         setSubmitted(true);
         resetForm();
-        setTimeout(() => setSubmitted(false), 5000); // hide success after 5s
+        // Hide success message after 5 seconds
+        setTimeout(() => setSubmitted(false), 5000);
       } else {
         throw new Error(data.message || 'Failed to send email');
       }
     } catch (error) {
+      console.error('Error sending email:', error);
       setError(error instanceof Error ? error.message : 'Failed to send email. Please try again.');
     } finally {
       setIsSubmitting(false);
@@ -98,34 +106,29 @@ const Contact = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+    
+    // Clear error when user starts typing
     if (error) setError(null);
   };
 
-  // auto-hide error after 5s
-  useEffect(() => {
-    if (error) {
-      const timer = setTimeout(() => setError(null), 5000);
-      return () => clearTimeout(timer);
-    }
-  }, [error]);
-
   return (
-    <section id="contact" className="no-print">
-      <div className="container mx-auto">
+    <section className="no-print" id="contact">
+      <div className="container">
         <div className="pt-16 md:pt-32 pb-20">
           <div className="flex items-center justify-between gap-2 border-b border-black pb-7 mb-9 md:mb-16">
             <h2>Contactez-moi</h2>
             <p className="text-xl text-orange-500">( 05 )</p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-            {/* Formulaire */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <form onSubmit={handleSubmit}>
               <div className="flex flex-col gap-7 sm:gap-12">
                 <div className="grid grid-cols-2 gap-8">
                   <div>
-                    <label htmlFor="name" className="label">Nom *</label>
+                    <label htmlFor="name" className="label">Name *</label>
                     <input
                       required
                       className="input"
@@ -153,7 +156,6 @@ const Contact = () => {
                     />
                   </div>
                 </div>
-
                 <div>
                   <label htmlFor="email" className="label">Email *</label>
                   <input
@@ -168,7 +170,6 @@ const Contact = () => {
                     placeholder="your.email@example.com"
                   />
                 </div>
-
                 <div>
                   <label htmlFor="message" className="label">Message *</label>
                   <textarea
@@ -183,13 +184,18 @@ const Contact = () => {
                     placeholder="Parlez-moi de votre projet ou de votre demande..."
                   />
                 </div>
-
+                
                 {/* Success Message */}
                 {submitted && (
                   <div className="flex items-center gap-2 p-4 bg-green-50 border border-green-200 rounded-lg">
-                    <Image src="/images/icon/success-icon.svg" alt="success-icon" width={24} height={24} />
+                    <Image 
+                      src="/images/icon/success-icon.svg" 
+                      alt="success-icon" 
+                      width={24} 
+                      height={24} 
+                    />
                     <p className="text-green-700">
-                      Parfait ! Votre message a été envoyé avec succès.
+                      Parfait ! Votre message a été envoyé avec succès à mefoguehadjira@gmail.com. Vous recevrez une réponse bientôt.
                     </p>
                   </div>
                 )}
@@ -204,10 +210,10 @@ const Contact = () => {
                   </div>
                 )}
 
-                <button
-                  type="submit"
+                <button 
+                  type="submit" 
                   disabled={isSubmitting}
-                  className="relative overflow-hidden cursor-pointer w-fit py-3 px-6 border border-primary rounded-full group disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="relative overflow-hidden cursor-pointer w-fit py-2 sm:py-3 md:py-5 px-4 sm:px-5 md:px-7 border border-primary rounded-full group disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <span className="relative z-10 text-xl font-medium text-primary group-hover:text-white transition-colors duration-300">
                     {isSubmitting ? 'Envoi en cours...' : 'Envoyer'}
@@ -216,42 +222,42 @@ const Contact = () => {
                 </button>
               </div>
             </form>
-
-            {/* Bloc Social & Contact Info */}
-            <div className="flex flex-col sm:flex-row md:flex-col justify-between gap-5 md:gap-20 items-start md:items-end">
+            
+            <div className="flex flex-col sm:flex-row md:flex-col justify-between gap-5 md:gap-20 items-center md:items-end">
               {/* Social Links */}
-              {contactData?.socialLinks?.length > 0 && (
+              {contactData?.socialLinks && contactData.socialLinks.length > 0 && (
                 <div className="flex flex-wrap flex-row md:flex-col items-start md:items-end gap-4 md:gap-6">
-                  {contactData.socialLinks.map((link, idx) => (
-                    <Link
-                      key={`social-${idx}`}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-base sm:text-lg text-secondary hover:text-primary transition-colors duration-200"
-                    >
-                      {link.title}
-                    </Link>
+                  {contactData.socialLinks.map((value, index) => (
+                    <div key={`social-${index}`}>
+                      <Link 
+                        href={value.href} 
+                        className="text-base sm:text-lg font-normal text-secondary hover:text-primary transition-colors duration-200"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {value.title}
+                      </Link>
+                    </div>
                   ))}
                 </div>
               )}
-
+              
               {/* Contact Info */}
-              {contactData?.contactInfo?.length > 0 && (
+              {contactData?.contactInfo && contactData.contactInfo.length > 0 && (
                 <div className="flex flex-wrap justify-center gap-5 lg:gap-11 items-end">
-                  {contactData.contactInfo.map((info, idx) => (
-                    <Link
-                      key={`contact-${idx}`}
-                      href={info.link}
-                      className="text-base lg:text-lg text-black font-normal border-b border-black pb-3 hover:text-primary hover:border-primary transition-colors duration-200"
-                    >
-                      {info.label}
-                    </Link>
+                  {contactData.contactInfo.map((value, index) => (
+                    <div key={`contact-${index}`}>
+                      <Link 
+                        href={value.link} 
+                        className="text-base lg:text-lg text-black font-normal border-b border-black pb-3 hover:text-primary hover:border-primary transition-colors duration-200"
+                      >
+                        {value.label}
+                      </Link>
+                    </div>
                   ))}
                 </div>
               )}
             </div>
-
           </div>
         </div>
       </div>
@@ -260,4 +266,3 @@ const Contact = () => {
 };
 
 export default Contact;
-

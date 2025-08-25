@@ -23,6 +23,7 @@ const Header = () => {
          <a href="#hero" className="hover:text-primary transition-colors"> Home</a>
         <a href="#about-me" className="hover:text-primary transition-colors">About me</a>
           <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
+          <a href="#experience" className="hover:text-primary transition-colors">Experience</a>
           <a href="#education-skills" className="hover:text-primary transition-colors">Education skill</a>
           <a href="#latest-work" className="hover:text-primary transition-colors">Latest Works</a>
 

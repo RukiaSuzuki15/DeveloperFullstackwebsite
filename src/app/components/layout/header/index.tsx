@@ -20,6 +20,7 @@ const Header = () => {
 
         {/* Liens desktop */}
         <div className="hidden md:flex items-center gap-6">
+         <a href="#hero" className="hover:text-primary transition-colors"> Home</a>
         <a href="#about-me" className="hover:text-primary transition-colors">About me</a>
           <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
           <a href="#education-skills" className="hover:text-primary transition-colors">Education skill</a>
@@ -53,6 +54,7 @@ const Header = () => {
         }`}
       >
         <div className="flex flex-col items-start gap-3 px-6">
+        <a href="#hero" className="hover:text-primary transition-colors"> Home</a>
         <a href="#about-me" className="hover:text-primary transition-colors">About me</a>
           <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
           <a href="#education-skills" className="hover:text-primary transition-colors">Education skill</a>

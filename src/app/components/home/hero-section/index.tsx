@@ -31,8 +31,8 @@ const Hero = () => {
             src="/images/home/banner/banner-img.png" 
             alt="banner-img" 
             width={685} 
-            height={6500} 
-            className="block lg:hidden object-cover"
+            height={650} 
+            className="object-cover"
           />
         </div>
       </div>

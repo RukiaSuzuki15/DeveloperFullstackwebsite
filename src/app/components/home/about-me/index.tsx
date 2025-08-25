@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const AboutMe = () => {
     return (
-        <section>
+        <section id="about-me">
             <div className="relative bg-softGray py-10 md:py-32">
                 <div className="absolute top-0 w-full px-9">
                     <Image
@@ -15,13 +15,13 @@ const AboutMe = () => {
                 </div>
 
                 <div className="relative z-10">
-                    <div className="container">
+                    <div className="container mx-auto">
                         <div className="flex items-center justify-between gap-2 border-b border-black pb-7">
                             <h2>About Me</h2>
                             <p className="text-xl text-primary">( 01 )</p>
                         </div>
 
-                        <div className="pt-10 xl:pt-16 flex gap-10 items-center justify-between">
+                        <div className="pt-10 xl:pt-16 flex flex-col lg:flex-row gap-10 items-center justify-between">
                             <div className="w-[303px] h-[440px] hidden lg:flex">
                                 <Image
                                     src="/images/home/about-me/about-banner-img.svg"
@@ -34,15 +34,15 @@ const AboutMe = () => {
 
                             <div className="w-full lg:max-w-2xl flex-1">
                                 <p>
-                                    I am a specialised well trained developper fullstack, Data analyst and a network engiener 
-                                    I did 7 years of training in all those domains so i am well prepared. 
+                                    I am a specialized full-stack developer, data analyst, and network engineer. 
+                                    I have completed 7 years of training in these domains, so I am well prepared.
                                 </p>
 
                                 <div className="grid grid-cols-3 py-10 xl:py-16 gap-5 border-b border-mistGray">
                                     {[
                                         { count: "07", label: "Years of experience" },
                                         { count: "165+", label: "Happy Clients" },
-                                        { count: "1800+", label: "Project Completed" },
+                                        { count: "1800+", label: "Projects Completed" },
                                     ].map((item, i) => (
                                         <div key={i}>
                                             <h3>{item.count}</h3>
@@ -82,3 +82,5 @@ const AboutMe = () => {
 };
 
 export default AboutMe;
+                           
+                                  

@@ -60,21 +60,14 @@ const ExperienceSec = () => {
                                 </div>
 
                                 <div className=" relative">
-                                    {index < experiences.length && (
-                                        <div className={`absolute left-0 top-3 w-px ${index < experiences.length - 1 ? 'h-40' : 'h-30'} bg-softGray`}></div>
-                                    )}
 
                                     <div className="no-print absolute left-0 top-0 transform -translate-x-1/2">
                                         <motion.div
-                                            className={`no-print w-3.5 h-3.5 rounded-full border-1 bg-white flex items-center justify-center ${index === 1 ? 'border-primary' : 'border-black'}`}
                                             initial={{ scale: 0 }}
                                             whileInView={{ scale: 1 }}
                                             transition={{ duration: 0.5 }}
                                             viewport={{ once: false }}
                                         >
-                                            {index === 1 && (
-                                                <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                                            )}
                                         </motion.div>
                                     </div>
 
@@ -99,3 +92,4 @@ const ExperienceSec = () => {
 };
 
 export default ExperienceSec;
+   
